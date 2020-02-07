@@ -25,4 +25,5 @@ Route::get('/user/token', 'Api\ApiController@token');
 
 Route::get('/pai/auth', 'Api\ApiController@auth');//
 
-Route::get('/test/check','TestController@md5test');
+Route::get('/test/check','TestController@md5test');     //注册
+Route::post('/test/check2','TestController@check2'); 	// 验证签名

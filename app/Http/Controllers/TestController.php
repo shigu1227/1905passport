@@ -40,4 +40,29 @@ class TestController extends Controller
 
         echo '11111111111';
     }
+
+
+    public function check2()
+    {
+        // 计算签名的key 与发送端 保持一致
+        $key = "1905";
+
+        echo '<pre>';print_r($_POST);
+        //接收数据 和 签名
+        $json_data = $_POST['data'];
+        $sign = $_POST['sign'];
+
+        //计算签名
+        $sign2 = md5($json_data.$key);
+        echo "接收端计算的签名：".$sign2;echo "<br>";
+
+        // 比较接收到的签名
+        if($sign2==$sign){
+            echo "验签成功";
+        }else{
+            echo "验签失败";
+        }
+
+
+    }
 }

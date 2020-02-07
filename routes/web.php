@@ -24,3 +24,5 @@ Route::post('/user/login', 'Api\ApiController@login');
 Route::get('/user/token', 'Api\ApiController@token');
 
 Route::get('/pai/auth', 'Api\ApiController@auth');//
+
+Route::get('/test/check','TestController@md5test');

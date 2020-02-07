@@ -65,4 +65,29 @@ class TestController extends Controller
 
 
     }
+
+    public function check3(){
+        $data=request()->input('data');
+
+        echo $data;
+        echo '<hr>';
+        $sign=request()->input('sign');
+        echo $sign;
+        $path=storage_path('keys/pub_key');
+//        echo $path;die;
+        //获取公钥
+        $pkeyid=openssl_pkey_get_public("file://".$path);
+
+        $v=openssl_verify($data,base64_decode($sign),$pkeyid,OPENSSL_ALGO_SHA256);
+
+
+
+        if($v){
+            echo '验签成功';
+        }else{
+            echo '验签失败';
+        }
+
+
+    }
 }

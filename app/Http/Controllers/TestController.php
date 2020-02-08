@@ -72,7 +72,7 @@ class TestController extends Controller
         echo $data;
         echo '<hr>';
         $sign=request()->input('sign');
-        echo $sign;
+//        echo $sign;
         $path=storage_path('keys/pub_key');
 //        echo $path;die;
         //获取公钥
@@ -83,11 +83,24 @@ class TestController extends Controller
 
 
         if($v){
-            echo '验签成功';
-        }else{
             echo '验签失败';
+        }else{
+            echo '验签成功';
         }
 
 
+    }
+
+    //对称加密
+    public function aes(){
+        echo '<hr>';
+        $str=request()->input('str');
+        // echo $str;
+        $method='AES-256-CBC';  //加密方式
+        $key='zhangxiaoleshiguxyx';    //加密的密钥
+        $iv='zhangxiaolexyxaa';       //必须为16位
+        $enc=base64_decode($str);
+        $d=openssl_decrypt($enc,$method,$key,OPENSSL_RAW_DATA,$iv);
+        echo '解密后的数据：'.$d;
     }
 }

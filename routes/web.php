@@ -28,3 +28,4 @@ Route::get('/pai/auth', 'Api\ApiController@auth');//
 Route::get('/test/check','TestController@md5test');     //注册
 Route::post('/test/check2','TestController@check2'); 	// 验证签名
 Route::get('/test/check3','TestController@check3');
+Route::get('/test/aes','TestController@aes');

@@ -103,4 +103,16 @@ class TestController extends Controller
         $d=openssl_decrypt($enc,$method,$key,OPENSSL_RAW_DATA,$iv);
         echo '解密后的数据：'.$d;
     }
+
+
+    //非对称加密
+    public function aes2(){
+        $str=request()->input('str');
+        $key=storage_path('keys/pub_key');
+        $keys=openssl_pkey_get_public('file://'.$key);
+        // dump($keys);
+        $str=base64_decode($str);
+        openssl_public_decrypt($str,$s,$keys);
+        echo '解密后数据：'.$s;
+    }
 }
